@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "dev": "concurrently -c blue.bold,magenta --kill-others \"nodemon server.js\" \"cd client && yarn start\"",
-    "install-dev": "yarn install && cd client && yarn install && cd ..",
-    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
+    "dev": "concurrently -c blue.bold,magenta --kill-others \"nodemon server.js\" \"cd client && npm start\"",
+    "install-dev": "npm install && cd client && npm install && cd ..",
+    "heroku-postbuild": "cd client && npm run build"
   },
   "dependencies": {
     "express": "^4.16.2",
