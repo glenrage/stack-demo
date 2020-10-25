@@ -13,12 +13,14 @@ const buildPath = path.join(__dirname, 'client', 'build');
 app.use(express.static(buildPath));
 console.log(buildPath)
 
+app.get('*', (req, res) => {    res.sendFile(path.join(__dirname = 'client/build/index.html'));  })
+
 app.get('/api/products/id/data', (req, res) => {
   try {
     res.header("Content-Type",'application/json');
     res.send(JSON.stringify(data));
   } catch(err)  {
-    console.error(err)
+    console.log(err)
   }
 })
 
