@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "concurrently -c blue.bold,magenta --kill-others \"nodemon server.js\" \"cd client && npm start\"",
     "install-dev": "npm install && cd client && npm install && cd ..",
-    "heroku-postbuild": "cd client && npm --production=false && npm run build"
+    "heroku-postbuild": "cd client && npm run build"
   },
   "dependencies": {
     "express": "^4.16.2",
