@@ -2,7 +2,7 @@ import axios from 'axios';
 import { FETCH_PRODUCTDATA } from './types';
 
 // const API_ROOT = '/api';
-const API_ROOT = 'https://stackline-glen.herokuapp.com';
+const API_ROOT = 'https://stackline-glen.herokuapp.com/api';
 
 // eslint-disable-next-line import/prefer-default-export
 export function fetchData() {
