@@ -1,40 +1,50 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
+/* eslint-disable react/no-did-mount-set-state */
+import React from 'react';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import { connect } from 'react-redux';
+import Chart from './Chart';
+import SalesTable from './SalesTable';
+import SideBar from './SideBar';
 import Header from './Header';
-import { fetchTest } from '../actions';
+import { fetchData } from '../actions';
 
-const MessageBox = styled.div`
-  margin: 0 auto;
-  margin-top: 20px;
-  padding: 40px;
-  text-align: center;
-  background-color: linen;
-  color: paleVioletRed;
-  border-radius: 20px;
-  width: 400px;
-`;
+const styles = () => ({
+  root: {
+    width: '100%',
+    backgroundColor: '#f6f8fa',
+  },
+  main: {
+    margin: '40px 10px 0px 20px',
+    display: 'flex',
+  },
+  content: {
+    margin: '10px',
+  },
+  table: {
+    marginTop: '30px',
+  },
+});
 
-const Message = styled.span`
-  font-weight: 700;
-  color: maroon;
-`;
-
-class Home extends Component {
-  componentDidMount() {
-    this.props.fetchTest();
+class Home extends React.Component {
+  async componentDidMount() {
+    await this.props.fetchData();
   }
 
   render() {
-    const { message } = this.props.test;
+    const { classes, productData } = this.props;
+
     return (
-      <div className="Home">
+      <div className={classes.root}>
         <Header />
-        <div className="container">
-          <MessageBox className="col-sm-8 col-sm-offset-2">
-            Message from API: <Message>{message}</Message>
-          </MessageBox>
+        <div className={classes.main}>
+          <SideBar data={productData} />
+          <Container className={classes.content} maxWidth="xl">
+            <Chart className={classes.chart} data={productData} />
+            <SalesTable className={classes.table} data={productData} />
+          </Container>
         </div>
       </div>
     );
@@ -42,21 +52,26 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  const { test } = state;
+  const getProductData = Object.values(get(state, 'productReducer', {}));
+  const [productData] = getProductData;
   return {
-    test,
+    productData,
   };
 }
 
 Home.propTypes = {
-  fetchTest: PropTypes.func.isRequired,
-  test: PropTypes.shape({
-    message: PropTypes.string,
-  }),
+  fetchData: PropTypes.func,
+  productData: PropTypes.shape({}),
+  classes: PropTypes.shape({}).isRequired,
 };
 
 Home.defaultProps = {
-  test: null,
+  fetchData: null,
+  productData: {
+    image: '',
+    sales: [],
+    tags: [],
+  },
 };
 
-export default connect(mapStateToProps, { fetchTest })(Home);
+export default connect(mapStateToProps, { fetchData })(withStyles(styles)(Home));

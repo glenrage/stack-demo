@@ -1,1 +1,1 @@
-export const FETCH_TEST = 'FETCH_TEST'; // eslint-disable-line import/prefer-default-export
+export const FETCH_PRODUCTDATA = 'FETCH_PRODUCTDATA'; // eslint-disable-line import/prefer-default-export
