@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require("path")
-const productData = require('./db/data')
 const data = require('./db/data.json')
 
 // app.use(express.static(path.join(__dirname, 'client/build')));
