@@ -41,8 +41,8 @@ const useStyles = makeStyles(() => ({
     fontSize: '12px',
   },
   tags: {
-    margin: '10px 5px 10px 0px',
-    width: '300px',
+    margin: '10px 5px 10px 5px',
+    width: '290px',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -66,7 +66,9 @@ const SideBar = (props) => {
           </Typography>
         </Box>
         <Divider />
+
         <Box className={classes.tags}>
+
           {productData.tags.map(tag => (
             <Typography className={classes.chip} key={`item-${tag}`}>
               {tag}
