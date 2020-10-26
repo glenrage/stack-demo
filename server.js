@@ -3,17 +3,8 @@ const app = express();
 const path = require("path")
 const data = require('./db/data.json')
 
-// app.use(express.static(path.join(__dirname, 'client/build')));
-
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-// });
-
 const buildPath = path.join(__dirname, 'client', 'build');
 app.use(express.static(buildPath));
-// console.log(buildPath)
-
-// app.get('*', (req, res) => {    res.sendFile(__dirname = 'client/build/index.html');  })
 
 app.get('/api/products/id/data', (req, res) => {
   try {
