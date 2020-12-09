@@ -1,3 +1,3 @@
 # Stackline Demo
 
-Visit [demo](https://stackline-glen.herokuapp.com/)
+take home assignment for Stackline [link](https://stackline-glen.herokuapp.com/)
